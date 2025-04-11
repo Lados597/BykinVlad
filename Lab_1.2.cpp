@@ -3,14 +3,14 @@
 
 class Entity {
 protected:
-    std::string name; // Защищенное поле: имя
-    int health;      // Защищенное поле: здоровье
+    std::string name; 
+    int health;   
 
 public:
-    // Конструктор базового класса
+
     Entity(const std::string& n, int h) : name(n), health(h) {}
 
-    // Виртуальный метод для вывода информации
+
     virtual void displayInfo() const {
         std::cout << "Name: " << name << ", HP: " << health;
     }
@@ -20,62 +20,62 @@ public:
 
 class Player : public Entity {
 private:
-    int experience; // Приватное поле: опыт
+    int experience; 
 
 public:
-    // Конструктор производного класса
+
     Player(const std::string& n, int h, int exp)
         : Entity(n, h), experience(exp) {
     }
 
-    // Переопределение метода displayInfo
+ 
     void displayInfo() const override {
-        Entity::displayInfo(); // Вызов метода базового класса
+        Entity::displayInfo(); 
         std::cout << ", Experience: " << experience << std::endl;
     }
 };
 
 class Enemy : public Entity {
 private:
-    std::string type; // Приватное поле: тип врага
+    std::string type; 
 
 public:
-    // Конструктор производного класса
+
     Enemy(const std::string& n, int h, const std::string& t)
         : Entity(n, h), type(t) {
     }
 
-    // Переопределение метода displayInfo
+
     void displayInfo() const override {
-        Entity::displayInfo(); // Вызов метода базового класса
+        Entity::displayInfo(); 
         std::cout << ", Type: " << type << std::endl;
     }
 };
 
 class Boss : public Enemy {
 private:
-    std::string specialAbility; // Уникальное свойство босса
+    std::string specialAbility; 
 
 public:
-    // Конструктор для Boss
+
     Boss(const std::string& n, int h, const std::string& t, const std::string& ability)
         : Enemy(n, h, t), specialAbility(ability) {
     }
 
-    // Переопределение метода displayInfo
+
     void displayInfo() const override {
-        Enemy::displayInfo(); // Вызов метода родительского класса
+        Enemy::displayInfo(); 
         std::cout << "Special Ability: " << specialAbility << std::endl;
     }
 };
 
 int main() {
-    // Создаем объекты игрока, обычного врага и босса
+
     Player hero("Hero", 100, 0);
     Enemy monster("Goblin", 50, "Goblin");
     Boss dragon("Dragon", 200, "Dragon", "Fire Breath");
 
-    // Выводим информацию о персонажах
+
     std::cout << "Player Info:" << std::endl;
     hero.displayInfo();
 
